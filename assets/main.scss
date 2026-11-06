@@ -2,28 +2,65 @@
 # Front matter tells Jekyll to compile this file.
 ---
 
-// Theme colours. Change these to restyle the site.
-$brand-color: #1f5f8b;
-$text-color: #222;
-$background-color: #fdfdfd;
+// Plain black-and-white theme settings
+$text-color:       #111;
+$background-color: #fff;
+$brand-color:      #111;   // links
+$grey-color:       #666;
+$content-width:    720px;  // narrower column = easier reading
+$base-line-height: 1.6;
 
 @import "minima";
 
-// Light touches on top of the minima theme
+// Header: thin neutral line instead of the coloured bar
 .site-header {
-  border-top: 4px solid $brand-color;
+  border-top: 0;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .site-title,
-.site-title:visited {
-  color: $brand-color;
-  font-weight: 600;
+.site-title:visited,
+.site-nav .page-link {
+  color: $text-color;
 }
 
-h1, h2 {
-  color: $brand-color;
+// Links: black and underlined so they're obvious without colour
+.page-content a {
+  color: $text-color;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.page-content a:hover {
+  color: $grey-color;
+}
+
+// Clear separation between sections
+.page-content {
+  padding: 48px 0;
+}
+
+.page-content h1 {
+  margin-bottom: 24px;
+}
+
+.page-content h2 {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e5e5;
+  margin-bottom: 16px;
+}
+
+.page-content h3 {
+  margin-top: 32px;
 }
 
 .page-content ul li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 8px;
+}
+
+// Footer: a little calmer
+.site-footer {
+  border-top: 1px solid #e5e5e5;
+  color: $grey-color;
 }
