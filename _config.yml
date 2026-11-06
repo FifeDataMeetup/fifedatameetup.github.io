@@ -1,0 +1,36 @@
+# ─── Site settings ───────────────────────────────────────────
+title: Fife Data Meetup
+description: A free, friendly meetup for anyone interested in data in Fife, Scotland.
+email: hello@example.com            # TODO: replace with the meetup's contact email
+github_username: FifeDataMeetup     # shows a GitHub link in the footer
+url: ""
+baseurl: ""
+
+# Plain built-in theme. Swap or customise later.
+theme: minima
+
+# Top navigation, in order
+header_pages:
+  - events.md
+  - about.md
+  - speak.md
+
+# ─── Events ──────────────────────────────────────────────────
+# Each file in _events/ is one meetup and gets its own page.
+collections:
+  events:
+    output: true
+    permalink: /events/:path/
+
+# Show events with future dates (Jekyll hides them by default)
+future: true
+
+defaults:
+  - scope:
+      path: ""
+      type: events
+    values:
+      layout: event
+
+exclude:
+  - README.md

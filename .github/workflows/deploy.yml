@@ -4,26 +4,24 @@ on:
   # Deploy on every push to main
   push:
     branches: [main]
+  # Rebuild daily so past events move to "Past meetups" automatically
+  schedule:
+    - cron: "17 3 * * *"
   # Allow manual runs from the Actions tab
   workflow_dispatch:
 
-# Permissions needed to deploy to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Only one deployment at a time; don't cancel an in-progress one
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,12 +29,22 @@ jobs:
       - name: Set up Pages
         uses: actions/configure-pages@v5
 
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
-        with:
-          # Publish the repo root. Change to e.g. ./site if you move files later.
-          path: .
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

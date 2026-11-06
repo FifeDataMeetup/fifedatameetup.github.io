@@ -1,19 +1,51 @@
-# Fife Data Meetup
+# Fife Data Meetup website
 
-Landing site for the Fife Data Meetup, deployed automatically to GitHub Pages.
+A simple [Jekyll](https://jekyllrb.com/) site, deployed to GitHub Pages automatically whenever `main` changes.
 
-## How it works
+## ✏️ How to edit (no coding needed)
 
-Every push to `main` triggers `.github/workflows/deploy.yml`, which publishes the repo to GitHub Pages.
-You can also run it manually from the **Actions** tab ("Run workflow").
+Everything can be done on github.com: open a file, click the ✏️ pencil icon, make your change, then click **Commit changes**. The site updates within a couple of minutes (check the **Actions** tab).
 
-## One-time setup
+| I want to…                 | Edit this                   |
+|----------------------------|-----------------------------|
+| Add a meetup               | add a file in `_events/`    |
+| Change the homepage        | `index.md`                  |
+| Change the About page      | `about.md`                  |
+| Change "Give a Talk"       | `speak.md`                  |
+| Change site title or email | `_config.yml`               |
 
-1. Create a repo on GitHub (e.g. `fife-data-meetup`) and push these files to `main`.
-2. In the repo go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
-3. Go to the **Actions** tab and watch the "Deploy to GitHub Pages" run (re-run it if it ran before step 2).
-4. The site will be live at `https://<your-username>.github.io/fife-data-meetup/`.
+### Adding a meetup
 
-## Making changes
+1. Open the `_events` folder and click **Add file → Create new file**.
+2. Name it after the year and month, e.g. `2027-01.md`.
+3. Paste this in and change the details:
 
-Edit `index.html`, commit, push to `main` — the site redeploys in about a minute.
+```markdown
+---
+title: January Meetup
+date: 2027-01-14 18:30:00
+time: "18:30 – 20:30"
+venue: Somewhere, St Andrews
+signup: https://link-to-sign-up
+---
+
+A short description of the event, talks and speakers.
+```
+
+The event appears on the homepage and Events page automatically, and moves to "Past" once the date has gone.
+Text uses [Markdown](https://www.markdownguide.org/cheat-sheet/): `## Heading`, `**bold**`, `[link text](https://...)`.
+
+## How it's built
+
+```
+_config.yml        site settings and navigation
+_events/           one file per meetup
+_layouts/event.html  template for event pages
+index.md           homepage
+events.md          list of upcoming and past events
+about.md, speak.md, code-of-conduct.md
+.github/workflows/deploy.yml   builds and deploys the site
+```
+
+The site uses the plain built-in `minima` theme for now. It rebuilds on every push to `main` and once a day, so past events move across automatically.
+One-time setup: **Settings → Pages → Source: GitHub Actions**.
