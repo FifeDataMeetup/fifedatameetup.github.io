@@ -1,51 +1,111 @@
-# Fife Data Meetup website
+# Fife Data Meetup Website
 
-A simple [Jekyll](https://jekyllrb.com/) site, deployed to GitHub Pages automatically whenever `main` changes.
+Official website for Fife Data Meetup
 
-## ✏️ How to edit (no coding needed)
+**Temporary URL:** [https://fifedatameetup.github.io/fife-data-meetup-website/](https://fifedatameetup.github.io/fife-data-meetup-website/)
 
-Everything can be done on github.com: open a file, click the ✏️ pencil icon, make your change, then click **Commit changes**. The site updates within a couple of minutes (check the **Actions** tab).
+## About
 
-| I want to…                 | Edit this                   |
-|----------------------------|-----------------------------|
-| Add a meetup               | add a file in `_events/`    |
-| Change the homepage        | `index.md`                  |
-| Change the About page      | `about.md`                  |
-| Change "Give a Talk"       | `speak.md`                  |
-| Change site title or email | `_config.yml`               |
+Fife Data Meetup is a free, community-run meetup for anyone interested in data in Fife, Scotland. Each meetup features short talks from the local data community, followed by time to chat and share ideas.
 
-### Adding a meetup
+## Tech Stack
 
-1. Open the `_events` folder and click **Add file → Create new file**.
-2. Name it after the year and month, e.g. `2027-01.md`.
-3. Paste this in and change the details:
+This website is built with:
+- **Jekyll** - Static site generator (via the `github-pages` gem)
+- **Minima** - Default Jekyll theme
+- **GitHub Pages** - Hosting platform
+- **GitHub Actions** - Builds and deploys the site on every push to `main`
 
-```markdown
+## Project Structure
+
+```
+├── .github/workflows/
+│   └── deploy.yml           # Build and deploy to GitHub Pages
+├── _config.yml              # Jekyll configuration
+├── _events/                 # One markdown file per event (YYYY-MM.md)
+├── _layouts/
+│   └── event.html           # Event page layout
+├── assets/
+│   └── main.scss            # Site styles (theme colours and overrides)
+├── index.md                 # Homepage
+├── events.md                # Events listing page
+├── about.md                 # About page
+├── speak.md                 # Call for speakers
+├── code-of-conduct.md       # Code of conduct
+└── Gemfile                  # Ruby dependencies for local development
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Ruby (version 3.0 or higher)
+- Bundler gem
+
+On macOS, the system Ruby is too old. Install a newer version with [Homebrew](https://brew.sh/) (`brew install ruby`) or a version manager such as `rbenv`.
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone git@github.com:FifeDataMeetup/fife-data-meetup-website.git
+cd fife-data-meetup-website
+```
+
+2. Install dependencies:
+```bash
+bundle install
+```
+
+3. Run the development server:
+```bash
+bundle exec jekyll serve --livereload
+```
+
+4. Open your browser and navigate to `http://localhost:4000/fife-data-meetup-website/`
+
+Changes to pages and events reload automatically. Changes to `_config.yml` require restarting the server.
+
+## Adding Content
+
+### Adding a New Event
+
+1. Create a new markdown file in `_events/YYYY-MM.md` (e.g., `_events/2027-01.md`)
+2. Use the following frontmatter template, followed by a description of the event:
+
+```yaml
 ---
-title: January Meetup
-date: 2027-01-14 18:30:00
+title: "Event Title"
+date: YYYY-MM-DD HH:MM:SS
 time: "18:30 – 20:30"
-venue: Somewhere, St Andrews
-signup: https://link-to-sign-up
+venue: "Venue name, Town"
+signup: https://link-to-signup-page
 ---
 
-A short description of the event, talks and speakers.
+Event description, agenda and speakers.
 ```
 
-The event appears on the homepage and Events page automatically, and moves to "Past" once the date has gone.
-Text uses [Markdown](https://www.markdownguide.org/cheat-sheet/): `## Heading`, `**bold**`, `[link text](https://...)`.
+Events are listed as upcoming or past based on their date. The site rebuilds daily so past events move across automatically.
 
-## How it's built
+> [!NOTE]
+> Quote the `time` value. Unquoted times such as `18:30` can be misread by YAML.
 
-```
-_config.yml        site settings and navigation
-_events/           one file per meetup
-_layouts/event.html  template for event pages
-index.md           homepage
-events.md          list of upcoming and past events
-about.md, speak.md, code-of-conduct.md
-.github/workflows/deploy.yml   builds and deploys the site
-```
+### Editing Pages
 
-The site uses the plain built-in `minima` theme for now. It rebuilds on every push to `main` and once a day, so past events move across automatically.
-One-time setup: **Settings → Pages → Source: GitHub Actions**.
+Each page is a markdown file in the root of the repository (`index.md`, `about.md`, `speak.md`, `code-of-conduct.md`). Small changes can be made directly on GitHub using the edit (pencil) button.
+
+## Deployment
+
+The site is deployed by GitHub Actions (`.github/workflows/deploy.yml`) on every push to `main`, once a day, and on demand from the Actions tab.
+
+GitHub Pages must be set to deploy from GitHub Actions: **Settings > Pages > Build and deployment > Source: GitHub Actions**.
+
+## Contributing
+
+We welcome contributions! Whether it's fixing typos, improving documentation, or adding new features, please feel free to:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/my-change`)
+3. Commit your changes (`git commit -m 'Describe your change'`)
+4. Push to the branch (`git push origin feature/my-change`)
+5. Open a Pull Request

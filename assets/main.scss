@@ -1,0 +1,29 @@
+---
+# Front matter tells Jekyll to compile this file.
+---
+
+// Theme colours. Change these to restyle the site.
+$brand-color: #1f5f8b;
+$text-color: #222;
+$background-color: #fdfdfd;
+
+@import "minima";
+
+// Light touches on top of the minima theme
+.site-header {
+  border-top: 4px solid $brand-color;
+}
+
+.site-title,
+.site-title:visited {
+  color: $brand-color;
+  font-weight: 600;
+}
+
+h1, h2 {
+  color: $brand-color;
+}
+
+.page-content ul li {
+  margin-bottom: 0.4rem;
+}
