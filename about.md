@@ -14,7 +14,7 @@ Venues will vary around Fife. Each [event page]({{ "/events/" | relative_url }})
 
 ## Organisers
 
-- Pablo Lopez Santori <!-- TODO: add or change organisers -->
+- Luigi Creazzo
 
 ## Code of conduct
 
