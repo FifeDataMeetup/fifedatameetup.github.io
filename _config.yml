@@ -1,7 +1,7 @@
 # ─── Site settings ───────────────────────────────────────────
 title: Fife Data Meetup
 description: A free, friendly meetup for anyone interested in data in Fife, Scotland.
-email: hello@example.com            # TODO: replace with the meetup's contact email
+email: luigi.creazzo@gmail.com            # TODO: replace with the meetup's contact email (update: provisionally put my personal email - LC 11/11/26)
 github_username: FifeDataMeetup     # shows a GitHub link in the footer
 # Where the site is hosted. baseurl must match the repository name.
 # If you add a custom domain later, set url to it and baseurl to "".
