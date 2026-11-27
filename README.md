@@ -23,10 +23,16 @@ This website is built with:
 │   └── deploy.yml           # Build and deploy to GitHub Pages
 ├── _config.yml              # Jekyll configuration
 ├── _events/                 # One markdown file per event (YYYY-MM.md)
+├── _includes/
+│   ├── event-card.html      # Event summary card (home and events pages)
+│   ├── head.html            # Theme <head> override (adds favicons)
+│   └── header.html          # Theme header override (adds logo)
 ├── _layouts/
 │   └── event.html           # Event page layout
 ├── assets/
+│   ├── images/              # Logo, plus event images in images/events/
 │   └── main.scss            # Site styles (theme colours and overrides)
+├── favicon.ico / favicon.svg / apple-touch-icon.png  # Browser and home-screen icons
 ├── index.md                 # Homepage
 ├── events.md                # Events listing page
 ├── about.md                 # About page
@@ -80,12 +86,16 @@ date: YYYY-MM-DD HH:MM:SS
 time: "18:30 – 20:30"
 venue: "Venue name, Town"
 signup: https://link-to-signup-page
+image: /assets/images/events/YYYY-MM.jpg   # optional
+image_alt: "Short description of the image"  # optional
 ---
 
 Event description, agenda and speakers.
 ```
 
-Events are listed as upcoming or past based on their date. The site rebuilds daily so past events move across automatically.
+Events are listed as upcoming or past based on their date. The site rebuilds daily so past events move across automatically. The sign-up button is only shown while the event is upcoming.
+
+`image` is optional. Put the file in `assets/images/events/`. It is shown on the event card and event page, and used as the preview image when the event link is shared (Slack, LinkedIn, WhatsApp, etc.). A landscape image around 1200×630 works best; cards crop to that shape.
 
 > [!NOTE]
 > Quote the `time` value. Unquoted times such as `18:30` can be misread by YAML.

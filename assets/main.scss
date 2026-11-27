@@ -7,6 +7,7 @@ $text-color:       #111;
 $background-color: #fff;
 $brand-color:      #111;   // links
 $grey-color:       #666;
+$border-color:     #e5e5e5;
 $content-width:    720px;  // narrower column = easier reading
 $base-line-height: 1.6;
 
@@ -15,13 +16,32 @@ $base-line-height: 1.6;
 // Header: thin neutral line instead of the coloured bar
 .site-header {
   border-top: 0;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid $border-color;
 }
 
 .site-title,
 .site-title:visited,
 .site-nav .page-link {
   color: $text-color;
+}
+
+.site-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.site-logo {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
+.site-nav .page-link:hover {
+  color: $grey-color;
+  text-decoration: none;
 }
 
 // Links: black and underlined so they're obvious without colour
@@ -37,30 +57,248 @@ $base-line-height: 1.6;
 
 // Clear separation between sections
 .page-content {
-  padding: 48px 0;
+  padding: 56px 0 72px;
+
+  @include media-query($on-palm) {
+    padding: 32px 0 48px;
+  }
 }
 
-.page-content h1 {
+.page-content h1,
+.post-title {
   margin-bottom: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
 }
 
 .page-content h2 {
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 1px solid #e5e5e5;
-  margin-bottom: 16px;
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid $border-color;
+  margin-bottom: 20px;
+}
+
+// No divider directly under a page title
+.post-content > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .page-content h3 {
   margin-top: 32px;
 }
 
+.page-content ul {
+  margin-left: 20px;
+}
+
 .page-content ul li {
   margin-bottom: 8px;
 }
 
+// Secondary text
+.muted {
+  color: $grey-color;
+}
+
+// Homepage intro
+.intro {
+  margin-bottom: 8px;
+
+  .lead {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    margin-bottom: 0;
+  }
+}
+
+// Small uppercase labels (dates, field names)
+%label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $grey-color;
+}
+
+// Event cards (homepage + events list)
+.event-list {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.page-content a.event-card {
+  display: block;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  overflow: hidden;
+  text-decoration: none;
+  color: $text-color;
+  transition: border-color 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: $text-color;
+    color: $text-color;
+
+    .event-card-more {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
+}
+
+.event-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.91 / 1;  // same shape as social link previews
+  object-fit: cover;
+  border-bottom: 1px solid $border-color;
+}
+
+.event-card-body {
+  padding: 20px 24px 22px;
+
+  > * {
+    margin: 0;
+  }
+}
+
+.event-card-date {
+  @extend %label;
+}
+
+.page-content .event-card-title {
+  margin: 6px 0 4px;
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+
+.event-card-venue {
+  color: $grey-color;
+}
+
+.event-card-more {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+// Past events: compact list with a small thumbnail
+.page-content ul.past-events {
+  list-style: none;
+  margin-left: 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+    padding: 12px 0;
+    border-bottom: 1px solid $border-color;
+
+    &:first-child {
+      border-top: 1px solid $border-color;
+    }
+  }
+}
+
+.page-content a.past-events-thumb {
+  flex: 0 0 96px;
+  height: 64px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: $border-color;  // placeholder when there's no image
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.past-events-date {
+  display: block;
+  font-size: 0.9rem;
+  color: $grey-color;
+}
+
+// Event page
+.event-eyebrow {
+  @extend %label;
+  margin-bottom: 8px;
+}
+
+.event-image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 640px;  // keeps portrait posters from taking over the page
+  border-radius: 6px;
+  margin-bottom: 32px;
+}
+
+.event-details {
+  margin: 0 0 32px;
+  border-top: 1px solid $border-color;
+
+  > div {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid $border-color;
+  }
+
+  dt {
+    @extend %label;
+    line-height: inherit;
+    padding-top: 2px;
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.page-content a.button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid $text-color;
+  border-radius: 6px;
+  background: $text-color;
+  color: $background-color;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    background: $background-color;
+    color: $text-color;
+  }
+}
+
+.event-description {
+  margin-top: 32px;
+}
+
+.back-link {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid $border-color;
+}
+
 // Footer: a little calmer
 .site-footer {
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid $border-color;
   color: $grey-color;
+  padding: 40px 0;
+  font-size: 0.95rem;
+
+  a {
+    color: $grey-color;
+  }
 }

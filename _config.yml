@@ -27,12 +27,20 @@ collections:
 # Show events with future dates (Jekyll hides them by default)
 future: true
 
+logo: /assets/images/fife-data-mark.png
+
 defaults:
   - scope:
       path: ""
       type: events
     values:
       layout: event
+  # Link preview image for normal pages (events set their own)
+  - scope:
+      path: ""
+      type: pages
+    values:
+      image: /assets/images/fife-data-mark.png
 
 exclude:
   - README.md

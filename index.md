@@ -3,9 +3,10 @@ layout: default
 title: Home
 ---
 
-# Fife Data Meetup
-
-A free, friendly meetup for anyone interested in data in Fife: analysts, engineers, scientists, students and the simply curious. We meet for short talks, conversation and a chance to meet people who do similar work nearby.
+<div class="intro">
+  <h1>Fife Data Meetup</h1>
+  <p class="lead">A free, friendly meetup for anyone interested in data in Fife: analysts, engineers, scientists, students and the simply curious. We meet for short talks, conversation and a chance to meet people who do similar work nearby.</p>
+</div>
 
 {% assign now = site.time | date: "%s" | plus: 0 %}
 {% assign next_event = nil %}
@@ -21,14 +22,14 @@ A free, friendly meetup for anyone interested in data in Fife: analysts, enginee
 ## Next meetup
 
 {% if next_event %}
-**[{{ next_event.title }}]({{ next_event.url | relative_url }})**  
-📅 {{ next_event.date | date: "%A %-d %B %Y" }}{% if next_event.time %} · {{ next_event.time }}{% endif %}  
-📍 {{ next_event.venue }}
+<div class="event-list">
+{% include event-card.html event=next_event %}
+</div>
 {% else %}
-No meetup scheduled yet. Check back soon!
+<p class="muted">No meetup scheduled yet. Check back soon!</p>
 {% endif %}
 
-[See all events →]({{ "/events/" | relative_url }})
+<p><a href="{{ '/events/' | relative_url }}">See all events →</a></p>
 
 ## Where and when
 
