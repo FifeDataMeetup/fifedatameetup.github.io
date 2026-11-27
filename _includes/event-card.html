@@ -4,7 +4,7 @@
 {%- assign e = include.event -%}
 <a class="event-card{% if e.image %} has-image{% endif %}" href="{{ e.url | relative_url }}">
   {%- if e.image %}
-  <img class="event-card-image" src="{{ e.image | relative_url }}" alt="{{ e.image_alt | default: '' }}" loading="lazy">
+  <img class="event-card-image" src="{{ e.image | relative_url }}" alt="{{ e.image_alt | default: '' | escape }}" loading="lazy">
   {%- endif %}
   <div class="event-card-body">
     <p class="event-card-date">{{ e.date | date: "%A %-d %B %Y" }}{% if e.time %} · {{ e.time }}{% endif %}</p>

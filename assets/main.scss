@@ -178,13 +178,14 @@ $base-line-height: 1.6;
   font-size: 0.95rem;
 }
 
-// Past events: compact list with an aligned date column
+// Past events: compact list with a small thumbnail
 .page-content ul.past-events {
   list-style: none;
   margin-left: 0;
 
   li {
     display: flex;
+    align-items: center;
     gap: 16px;
     margin: 0;
     padding: 12px 0;
@@ -196,10 +197,25 @@ $base-line-height: 1.6;
   }
 }
 
+.page-content a.past-events-thumb {
+  flex: 0 0 96px;
+  height: 64px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: $border-color;  // placeholder when there's no image
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 .past-events-date {
-  flex: 0 0 104px;
+  display: block;
+  font-size: 0.9rem;
   color: $grey-color;
-  font-variant-numeric: tabular-nums;
 }
 
 // Event page
@@ -210,7 +226,9 @@ $base-line-height: 1.6;
 
 .event-image {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  max-height: 640px;  // keeps portrait posters from taking over the page
   border-radius: 6px;
   margin-bottom: 32px;
 }
