@@ -1,0 +1,17 @@
+{%- comment -%}
+  Summary card for one event. Usage: {% include event-card.html event=event %}
+{%- endcomment -%}
+{%- assign e = include.event -%}
+<a class="event-card{% if e.image %} has-image{% endif %}" href="{{ e.url | relative_url }}">
+  {%- if e.image %}
+  <img class="event-card-image" src="{{ e.image | relative_url }}" alt="{{ e.image_alt | default: '' }}" loading="lazy">
+  {%- endif %}
+  <div class="event-card-body">
+    <p class="event-card-date">{{ e.date | date: "%A %-d %B %Y" }}{% if e.time %} · {{ e.time }}{% endif %}</p>
+    <h3 class="event-card-title">{{ e.title }}</h3>
+    {%- if e.venue %}
+    <p class="event-card-venue">{{ e.venue }}</p>
+    {%- endif %}
+    <span class="event-card-more">Details →</span>
+  </div>
+</a>
