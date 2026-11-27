@@ -23,10 +23,16 @@ This website is built with:
 │   └── deploy.yml           # Build and deploy to GitHub Pages
 ├── _config.yml              # Jekyll configuration
 ├── _events/                 # One markdown file per event (YYYY-MM.md)
+├── _includes/
+│   ├── event-card.html      # Event summary card (home and events pages)
+│   ├── head.html            # Theme <head> override (adds favicons)
+│   └── header.html          # Theme header override (adds logo)
 ├── _layouts/
 │   └── event.html           # Event page layout
 ├── assets/
+│   ├── images/              # Logo, plus event images in images/events/
 │   └── main.scss            # Site styles (theme colours and overrides)
+├── favicon.ico / favicon.svg / apple-touch-icon.png  # Browser and home-screen icons
 ├── index.md                 # Homepage
 ├── events.md                # Events listing page
 ├── about.md                 # About page

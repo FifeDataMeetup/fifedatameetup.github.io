@@ -26,8 +26,17 @@ $base-line-height: 1.6;
 }
 
 .site-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-weight: 600;
   letter-spacing: 0;
+}
+
+.site-logo {
+  display: block;
+  height: 40px;
+  width: auto;
 }
 
 .site-nav .page-link:hover {
